@@ -15,9 +15,9 @@ import { Card } from '@components/Card/Card';
 
 export default function Home() {
   return (
-    <div className="flex h-screen flex-col overflow-hidden bg-white">
+    <div className="flex flex-col overflow-hidden lg:h-screen">
       {/* Header */}
-      <header className="w-full border-b bg-white px-4 py-3">
+      <header className="w-full border-b border-gray-300 px-4 py-3">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <Link href="https://nextjs.org/docs" target="_blank" rel="noreferrer">
             <Image
@@ -63,8 +63,8 @@ export default function Home() {
               A powerful starter kit for Next.js applications with pre-configured integrations to
               popular packages.
             </p>
-            <div className="min-w-60 rounded-lg bg-black p-4">
-              <pre className="text-sm text-white">
+            <div className="min-w-60 rounded-lg bg-foreground p-4">
+              <pre className="text-sm text-background">
                 <code>npx nextjs-starter-pack@latest</code>
               </pre>
             </div>
@@ -115,7 +115,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t px-4 py-3">
+      <footer className="w-full border-t border-gray-300 px-4 py-3">
         <div className="mx-auto flex max-w-7xl flex-col justify-center sm:flex-row">
           <p className="text-xs text-gray-500">
             &copy; {new Date().getFullYear()} Shubhankar Valimbe. Licensed under the MIT License.
