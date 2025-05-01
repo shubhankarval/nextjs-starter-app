@@ -12,6 +12,7 @@ import {
   BarChart,
 } from 'lucide-react';
 import { Card } from '@components/Card/Card';
+import { ThemeSwitch } from '@components/ThemeSwitch/ThemeSwitch';
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
             />
           </Link>
           <div className="flex items-center space-x-4">
+            <ThemeSwitch />
             <Link
               href="https://github.com/yourusername/nextjs-starter-pack"
               target="_blank"
