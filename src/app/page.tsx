@@ -15,9 +15,9 @@ import { Card } from '@components/Card/Card';
 
 export default function Home() {
   return (
-    <div className="flex flex-col overflow-hidden lg:h-screen">
+    <div className="flex flex-col overflow-hidden font-sans lg:h-screen">
       {/* Header */}
-      <header className="w-full border-b border-gray-300 px-4 py-3">
+      <header className="border-border w-full border-b px-4 py-3">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <Link href="https://nextjs.org/docs" target="_blank" rel="noreferrer">
             <Image
@@ -25,7 +25,7 @@ export default function Home() {
               alt="Next.js logo"
               width={100}
               height={30}
-              className="text-cyan-100"
+              className="dark:invert"
             />
           </Link>
           <div className="flex items-center space-x-4">
@@ -33,19 +33,19 @@ export default function Home() {
               href="https://github.com/yourusername/nextjs-starter-pack"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center text-sm text-gray-600 hover:text-gray-900"
+              className="text-muted-foreground hover:text-foreground flex items-center text-sm"
             >
               <Github className="mr-1 h-4 w-4" />
-              <span>GitHub</span>
+              <span className="hidden sm:inline">GitHub</span>
             </Link>
             <Link
               href="https://www.npmjs.com/package/nextjs-starter-pack"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center text-sm text-gray-600 hover:text-gray-900"
+              className="text-muted-foreground hover:text-foreground flex items-center text-sm"
             >
               <Package className="mr-1 h-4 w-4" />
-              <span>npm</span>
+              <span className="hidden sm:inline">npm</span>
             </Link>
           </div>
         </div>
@@ -59,13 +59,15 @@ export default function Home() {
             <h1 className="mb-2 text-3xl font-bold tracking-tight">
               Welcome to nextjs-starter-pack
             </h1>
-            <p className="mb-4 max-w-2xl text-gray-600">
-              A powerful starter kit for Next.js applications with pre-configured integrations to
-              popular packages.
+            <p className="text-muted-foreground mb-4 max-w-2xl">
+              A powerful starter kit for Next.js applications with
+              pre-configured integrations to popular packages.
             </p>
-            <div className="min-w-60 rounded-lg bg-foreground p-4">
-              <pre className="text-sm text-background">
-                <code>npx nextjs-starter-pack@latest</code>
+            <div className="bg-foreground min-w-60 rounded-lg p-4">
+              <pre className="text-background text-sm">
+                <code className="font-mono">
+                  npx nextjs-starter-pack@latest
+                </code>
               </pre>
             </div>
           </div>
@@ -73,7 +75,9 @@ export default function Home() {
 
         {/* Features grid */}
         <section className="mb-6">
-          <h2 className="mb-4 text-center text-xl font-bold">Features & Integrations</h2>
+          <h2 className="mb-4 text-center text-xl font-bold">
+            Features & Integrations
+          </h2>
           <div className="grid grid-cols-3 gap-4">
             <Card
               icon={<Zap className="h-5 w-5 text-orange-500" />}
@@ -115,10 +119,11 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t border-gray-300 px-4 py-3">
+      <footer className="border-border w-full border-t px-4 py-3">
         <div className="mx-auto flex max-w-7xl flex-col justify-center sm:flex-row">
-          <p className="text-xs text-gray-500">
-            &copy; {new Date().getFullYear()} Shubhankar Valimbe. Licensed under the MIT License.
+          <p className="text-muted-foreground text-xs">
+            &copy; {new Date().getFullYear()} Shubhankar Valimbe. Licensed under
+            the MIT License.
           </p>
         </div>
       </footer>
