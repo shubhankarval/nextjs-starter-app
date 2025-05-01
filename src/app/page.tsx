@@ -16,7 +16,7 @@ import { ThemeSwitch } from '@components/ThemeSwitch/ThemeSwitch';
 
 export default function Home() {
   return (
-    <div className="flex flex-col overflow-hidden font-sans lg:h-screen">
+    <div className="bg-background text-foreground flex flex-col overflow-hidden font-sans lg:h-screen">
       {/* Header */}
       <header className="border-border w-full border-b px-4 py-3">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
