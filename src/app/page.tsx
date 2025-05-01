@@ -32,7 +32,7 @@ export default function Home() {
           <div className="flex items-center space-x-4">
             <ThemeSwitch />
             <Link
-              href="https://github.com/yourusername/nextjs-starter-pack"
+              href="https://github.com/shubhankarval/nextjs-starter-pack"
               target="_blank"
               rel="noreferrer"
               className="text-muted-foreground hover:text-foreground flex items-center text-sm"
@@ -124,8 +124,16 @@ export default function Home() {
       <footer className="border-border w-full border-t px-4 py-3">
         <div className="mx-auto flex max-w-7xl flex-col justify-center sm:flex-row">
           <p className="text-muted-foreground text-xs">
-            &copy; {new Date().getFullYear()} Shubhankar Valimbe. Licensed under
-            the MIT License.
+            &copy; {new Date().getFullYear()}{' '}
+            <Link
+              href="https://github.com/shubhankarval"
+              target="_blank"
+              rel="noreferrer"
+              className="text-foreground underline"
+            >
+              <span>Shubhankar Valimbe</span>
+            </Link>
+            . Licensed under the MIT License.
           </p>
         </div>
       </footer>
