@@ -1,102 +1,139 @@
-import Image from "next/image";
+import Link from 'next/link';
+import Image from 'next/image';
+import {
+  Github,
+  Package,
+  Zap,
+  Database,
+  Lock,
+  Layers,
+  RefreshCw,
+  FileCode,
+  BarChart,
+} from 'lucide-react';
+import { Card } from '@components/Card/Card';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div className="bg-background text-foreground flex flex-col overflow-hidden font-sans lg:h-screen">
+      {/* Header */}
+      <header className="border-border w-full border-b px-4 py-3">
+        <div className="mx-auto flex max-w-7xl items-center justify-between">
+          <Link href="https://nextjs.org/docs" target="_blank" rel="noreferrer">
             <Image
+              src="/next.svg"
+              alt="Next.js logo"
+              width={100}
+              height={30}
               className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </Link>
+          <div className="flex items-center space-x-4">
+            <Link
+              href="https://github.com/shubhankarval/nextjs-starter-pack"
+              target="_blank"
+              rel="noreferrer"
+              className="text-muted-foreground hover:text-foreground flex items-center text-sm"
+            >
+              <Github className="mr-1 h-4 w-4" />
+              <span className="hidden sm:inline">GitHub</span>
+            </Link>
+            <Link
+              href="https://www.npmjs.com/package/nextjs-starter-pack"
+              target="_blank"
+              rel="noreferrer"
+              className="text-muted-foreground hover:text-foreground flex items-center text-sm"
+            >
+              <Package className="mr-1 h-4 w-4" />
+              <span className="hidden sm:inline">npm</span>
+            </Link>
+          </div>
         </div>
+      </header>
+
+      {/* Main content */}
+      <main className="mx-auto flex max-w-7xl flex-1 flex-col overflow-hidden px-4 py-4">
+        {/* Hero section */}
+        <section className="mb-6">
+          <div className="flex flex-col items-center text-center">
+            <h1 className="mb-2 text-3xl font-bold tracking-tight">
+              Welcome to nextjs-starter-pack
+            </h1>
+            <p className="text-muted-foreground mb-4 max-w-2xl">
+              A powerful starter kit for Next.js applications with
+              pre-configured integrations to popular packages.
+            </p>
+            <div className="bg-foreground min-w-60 rounded-lg p-4">
+              <pre className="text-background text-sm">
+                <code className="font-mono">
+                  npx nextjs-starter-pack@latest
+                </code>
+              </pre>
+            </div>
+          </div>
+        </section>
+
+        {/* Features grid */}
+        <section className="mb-6">
+          <h2 className="mb-4 text-center text-xl font-bold">
+            Features & Integrations
+          </h2>
+          <div className="grid grid-cols-3 gap-4">
+            <Card
+              icon={<Zap className="h-5 w-5 text-orange-500" />}
+              title="Performance"
+              description="Optimized for speed with Next.js App Router"
+            />
+            <Card
+              icon={<Database className="h-5 w-5 text-blue-500" />}
+              title="Database"
+              description="Pre-configured database integrations"
+            />
+            <Card
+              icon={<Lock className="h-5 w-5 text-green-500" />}
+              title="Authentication"
+              description="Ready-to-use auth solutions"
+            />
+            <Card
+              icon={<Layers className="h-5 w-5 text-purple-500" />}
+              title="UI Components"
+              description="Responsive UI components with Tailwind"
+            />
+            <Card
+              icon={<RefreshCw className="h-5 w-5 text-red-500" />}
+              title="State Management"
+              description="Efficient state management setup"
+            />
+            <Card
+              icon={<FileCode className="h-5 w-5 text-teal-500" />}
+              title="TypeScript"
+              description="Full TypeScript support and types"
+            />
+            <Card
+              icon={<BarChart className="h-5 w-5 text-indigo-500" />}
+              title="Analytics"
+              description="Built-in analytics integration"
+            />
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="border-border w-full border-t px-4 py-3">
+        <div className="mx-auto flex max-w-7xl flex-col justify-center sm:flex-row">
+          <p className="text-muted-foreground text-xs">
+            &copy; {new Date().getFullYear()}{' '}
+            <Link
+              href="https://github.com/shubhankarval"
+              target="_blank"
+              rel="noreferrer"
+              className="text-foreground underline"
+            >
+              <span>Shubhankar Valimbe</span>
+            </Link>
+            . Licensed under the MIT License.
+          </p>
+        </div>
       </footer>
     </div>
   );
