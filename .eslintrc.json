@@ -8,7 +8,6 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
-    "plugin:tailwindcss/recommended",
     "plugin:prettier/recommended"
   ],
   "plugins": [
@@ -16,7 +15,6 @@
     "react-hooks",
     "jsx-a11y",
     "import",
-    "tailwindcss",
     "unused-imports",
     "prettier"
   ],
