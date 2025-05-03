@@ -9,7 +9,6 @@ import {
   Layers,
   RefreshCw,
   FileCode,
-  BarChart,
 } from 'lucide-react';
 import { Card } from '@components/Card/Card';
 import { ThemeSwitch } from '@components/ThemeSwitch/ThemeSwitch';
@@ -56,7 +55,7 @@ export default function Home() {
       {/* Main content */}
       <main className="mx-auto flex max-w-7xl flex-1 flex-col overflow-hidden px-4 py-4">
         {/* Hero section */}
-        <section className="mb-6">
+        <section className="mb-12">
           <div className="flex flex-col items-center text-center">
             <h1 className="mb-2 text-3xl font-bold tracking-tight">
               Welcome to nextjs-starter-pack
@@ -110,11 +109,6 @@ export default function Home() {
               icon={<FileCode className="h-5 w-5 text-teal-500" />}
               title="TypeScript"
               description="Full TypeScript support and types"
-            />
-            <Card
-              icon={<BarChart className="h-5 w-5 text-indigo-500" />}
-              title="Analytics"
-              description="Built-in analytics integration"
             />
           </div>
         </section>
