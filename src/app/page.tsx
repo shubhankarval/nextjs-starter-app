@@ -9,7 +9,6 @@ import {
   Layers,
   RefreshCw,
   FileCode,
-  BarChart,
 } from 'lucide-react';
 import { Card } from '@components/Card/Card';
 
@@ -108,11 +107,6 @@ export default function Home() {
               icon={<FileCode className="h-5 w-5 text-teal-500" />}
               title="TypeScript"
               description="Full TypeScript support and types"
-            />
-            <Card
-              icon={<BarChart className="h-5 w-5 text-indigo-500" />}
-              title="Analytics"
-              description="Built-in analytics integration"
             />
           </div>
         </section>
