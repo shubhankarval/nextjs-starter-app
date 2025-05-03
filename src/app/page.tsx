@@ -53,7 +53,7 @@ export default function Home() {
       {/* Main content */}
       <main className="mx-auto flex max-w-7xl flex-1 flex-col overflow-hidden px-4 py-4">
         {/* Hero section */}
-        <section className="mb-6">
+        <section className="mb-12">
           <div className="flex flex-col items-center text-center">
             <h1 className="mb-2 text-3xl font-bold tracking-tight">
               Welcome to nextjs-starter-pack
