@@ -3,12 +3,13 @@ import { Trash2, Loader2 } from 'lucide-react';
 
 import { Button } from '@components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { useTaskContext } from '@context/task-context';
+import useTaskStore from '@store/task-store';
 import { cn } from '@lib/utils';
 
 export function Tasks() {
-  const { filteredTasks, filter, loading, toggleComplete, deleteTask } =
-    useTaskContext();
+  const { filter, loading, filterTasks, toggleComplete, deleteTask } =
+    useTaskStore();
+  const filteredTasks = filterTasks();
 
   return (
     <div className="flex-1 space-y-2 overflow-y-auto pr-1">

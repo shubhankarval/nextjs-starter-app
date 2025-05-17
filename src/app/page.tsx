@@ -1,15 +1,21 @@
 'use client';
+import { useEffect } from 'react';
 import Link from 'next/link';
 import { Github, Package, Plus } from 'lucide-react';
 
-import { useTaskContext } from '@context/task-context';
+import useTaskStore from '@store/task-store';
 import { Button } from '@components/ui/button';
 import { Input } from '@components/ui/input';
 import { Greeting } from '@components/greeting';
 import { Tasks } from '@components/tasks';
 
 export default function Home() {
-  const { addTask, newTask, setNewTask, filter, setFilter } = useTaskContext();
+  const { fetchTasks, addTask, newTask, setNewTask, filter, setFilter } =
+    useTaskStore();
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   return (
     <div className="min-h-screen overflow-hidden font-sans">
