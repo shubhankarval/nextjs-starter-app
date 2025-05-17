@@ -1,14 +1,24 @@
 'use client';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { Trash2, Loader2 } from 'lucide-react';
 
 import { Button } from '@components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { useTaskContext } from '@context/task-context';
+import {
+  filteredTasksAtom,
+  filterAtom,
+  loadingAtom,
+  deleteTaskAtom,
+  toggleCompleteAtom,
+} from '@store/tasks';
 import { cn } from '@lib/utils';
 
 export function Tasks() {
-  const { filteredTasks, filter, loading, toggleComplete, deleteTask } =
-    useTaskContext();
+  const filteredTasks = useAtomValue(filteredTasksAtom);
+  const filter = useAtomValue(filterAtom);
+  const loading = useAtomValue(loadingAtom);
+  const deleteTask = useSetAtom(deleteTaskAtom);
+  const toggleComplete = useSetAtom(toggleCompleteAtom);
 
   return (
     <div className="flex-1 space-y-2 overflow-y-auto pr-1">
