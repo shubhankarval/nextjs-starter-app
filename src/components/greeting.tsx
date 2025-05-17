@@ -5,7 +5,7 @@ import he from 'he';
 
 type HelloResponse = {
   code: string;
-  hello?: string;
+  hello: string;
 };
 
 type IPResponse = {
@@ -18,26 +18,25 @@ export function Greeting() {
   useEffect(() => {
     const fetchGreeting = async () => {
       try {
-        const params: Record<string, string> = {};
+        const params = new URLSearchParams();
         const langCode = navigator.language;
 
         if (langCode) {
-          params['lang'] = langCode;
+          params.set('lang', langCode.startsWith('en') ? 'en' : langCode);
         } else {
           const ipRes = await fetch('https://get.geojs.io/v1/ip.json');
           const ipData: IPResponse = await ipRes.json();
           if (ipData.ip) {
-            params['ip'] = ipData.ip;
+            params.set('ip', ipData.ip);
           }
         }
 
-        if (Object.keys(params).length > 0) {
+        if (params.size) {
           const res = await fetch(
-            `https://hellosalut.stefanbohacek.dev/?${new URLSearchParams(params)}`,
+            `https://hellosalut.stefanbohacek.dev/?${params}`,
           );
           const data: HelloResponse = await res.json();
-
-          setGreeting(data?.hello ? he.decode(data.hello) + '!' : 'Hello!');
+          setGreeting(he.decode(data.hello) + '!');
         } else {
           setGreeting('Hello!');
         }
