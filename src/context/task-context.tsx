@@ -13,12 +13,10 @@ type Filter = 'all' | 'active' | 'done';
 interface TaskContextType {
   tasks: Task[];
   filteredTasks: Task[];
-  newTask: string;
   filter: Filter;
   loading: boolean;
-  setNewTask: (val: string) => void;
   setFilter: (val: Filter) => void;
-  addTask: () => void;
+  addTask: (val: string) => void;
   deleteTask: (id: string) => void;
   toggleComplete: (id: string) => void;
 }
@@ -29,7 +27,6 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [newTask, setNewTask] = useState('');
   const [filter, setFilter] = useState<Filter>('all');
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -40,16 +37,15 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({
     })();
   }, []);
 
-  const addTask = async () => {
-    if (newTask.trim()) {
+  const addTask = async (val: string) => {
+    if (val.trim()) {
       const newTaskObj: Task = {
         id: crypto.randomUUID(),
-        text: newTask,
+        text: val,
         completed: false,
       };
       setTasks((prev) => [...prev, newTaskObj]);
       await addTaskToDB(newTaskObj);
-      setNewTask('');
     }
   };
 
@@ -78,10 +74,8 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({
       value={{
         tasks,
         filteredTasks,
-        newTask,
         filter,
         loading,
-        setNewTask,
         setFilter,
         addTask,
         deleteTask,

@@ -1,15 +1,43 @@
 'use client';
 import Link from 'next/link';
 import { Github, Package, Plus } from 'lucide-react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 import { useTaskContext } from '@context/task-context';
 import { Button } from '@components/ui/button';
 import { Input } from '@components/ui/input';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from '@components/ui/form';
 import { Greeting } from '@components/greeting';
 import { Tasks } from '@components/tasks';
 
+const formSchema = z.object({
+  taskName: z.string().min(2, {
+    message: 'Task name must be at least 2 characters.',
+  }),
+});
+
 export default function Home() {
-  const { addTask, newTask, setNewTask, filter, setFilter } = useTaskContext();
+  const { addTask, filter, setFilter } = useTaskContext();
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      taskName: '',
+    },
+  });
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    addTask(values.taskName);
+    form.reset();
+  }
 
   return (
     <div className="min-h-screen overflow-hidden font-sans">
@@ -44,21 +72,32 @@ export default function Home() {
             <Greeting />
           </div>
 
-          <div className="mb-6 flex space-x-2">
-            <Input
-              type="text"
-              placeholder="Add a new task..."
-              value={newTask}
-              onChange={(e) => setNewTask(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') addTask();
-              }}
-              className="flex-1"
-            />
-            <Button size="icon" aria-label="Add task" onClick={addTask}>
-              <Plus className="h-4 w-4" />
-            </Button>
-          </div>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="mb-6 flex space-x-2"
+            >
+              <FormField
+                control={form.control}
+                name="taskName"
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormControl>
+                      <Input
+                        type="text"
+                        placeholder="Add a new task..."
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button size="icon" aria-label="Add task" type="submit">
+                <Plus className="h-4 w-4" />
+              </Button>
+            </form>
+          </Form>
 
           <div className="mb-4 flex space-x-2">
             <Button
