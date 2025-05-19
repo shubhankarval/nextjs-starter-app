@@ -43,7 +43,7 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({
   const addTask = async () => {
     if (newTask.trim()) {
       const newTaskObj: Task = {
-        id: Date.now().toString(),
+        id: crypto.randomUUID(),
         text: newTask,
         completed: false,
       };
