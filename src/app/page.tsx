@@ -9,7 +9,7 @@ import {
   newTaskAtom,
   filterAtom,
   addTaskAtom,
-} from '@store/tasks';
+} from '@store/task-atoms';
 import { Button } from '@components/ui/button';
 import { Input } from '@components/ui/input';
 import { Greeting } from '@components/greeting';

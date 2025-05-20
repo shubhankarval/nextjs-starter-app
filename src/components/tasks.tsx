@@ -10,7 +10,7 @@ import {
   loadingAtom,
   deleteTaskAtom,
   toggleCompleteAtom,
-} from '@store/tasks';
+} from '@store/task-atoms';
 import { cn } from '@lib/utils';
 
 export function Tasks() {
