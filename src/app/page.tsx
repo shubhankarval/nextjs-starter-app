@@ -40,7 +40,7 @@ export default function Home() {
       {/* Main content */}
       <main className="mb-5 flex items-center justify-center transition-colors duration-300 lg:mt-5">
         <div className="mx-auto flex w-full max-w-md flex-col p-6">
-          <div className="mb-6 flex items-center justify-between">
+          <div className="mb-6 flex items-center gap-2">
             <Greeting />
           </div>
 
