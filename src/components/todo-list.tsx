@@ -15,8 +15,8 @@ export function TodoList() {
   return (
     <div className="mx-auto flex w-full max-w-md flex-col p-6">
       <div className="mb-6 flex items-center gap-2">
-        <Greeting />
         <ThemeSwitch />
+        <Greeting />
       </div>
 
       <div className="mb-6 flex space-x-2">
