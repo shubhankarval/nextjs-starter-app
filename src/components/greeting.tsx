@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import he from 'he';
+import { SessionProvider, useSession } from 'next-auth/react';
 
 type HelloResponse = {
   code: string;
@@ -12,11 +13,17 @@ type IPResponse = {
   ip: string;
 };
 
-export function Greeting() {
+function RenderGreeting() {
   const [greeting, setGreeting] = useState<string | null>(null);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const fetchGreeting = async () => {
+      let name = '';
+      if (session?.user?.name) {
+        name = ' ' + session.user.name.split(' ')[0];
+      }
+
       try {
         const params = new URLSearchParams();
         const langCode = navigator.language;
@@ -36,22 +43,30 @@ export function Greeting() {
             `https://hellosalut.stefanbohacek.dev/?${params}`,
           );
           const data: HelloResponse = await res.json();
-          setGreeting(he.decode(data.hello) + '!');
+          setGreeting(he.decode(data.hello) + name + '!');
         } else {
-          setGreeting('Hello!');
+          setGreeting('Hello' + name + '!');
         }
       } catch (error) {
         console.error('Failed to fetch greeting:', error);
-        setGreeting('Hello!');
+        setGreeting('Hello' + name + '!');
       }
     };
 
     fetchGreeting();
-  }, []);
+  }, [session]);
 
   return (
     <h1 className="text-foreground text-2xl font-bold">
       {greeting?.length && greeting}
     </h1>
+  );
+}
+
+export function Greeting() {
+  return (
+    <SessionProvider>
+      <RenderGreeting />
+    </SessionProvider>
   );
 }

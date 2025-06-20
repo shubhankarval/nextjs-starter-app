@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Github, Package } from 'lucide-react';
 
+import { AuthButton } from '@components/auth';
 import { TodoList } from '@components/todo-list';
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
     <div className="min-h-screen overflow-hidden font-sans">
       <header className="w-full px-4 py-3">
         <div className="mx-auto flex max-w-7xl items-center justify-end space-x-4">
+          <AuthButton />
           <Link
             href="https://github.com/shubhankarval/nextjs-starter-pack"
             target="_blank"
