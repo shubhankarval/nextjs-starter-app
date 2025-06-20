@@ -1,47 +1,11 @@
-'use client';
 import Link from 'next/link';
-import { Github, Package, Plus } from 'lucide-react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import { Github, Package } from 'lucide-react';
 
-import { useTaskContext } from '@context/task-context';
-import { Button } from '@components/ui/button';
-import { Input } from '@components/ui/input';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from '@components/ui/form';
-import { Greeting } from '@components/greeting';
-import { Tasks } from '@components/tasks';
-
-const formSchema = z.object({
-  taskName: z.string().min(2, {
-    message: 'Task name must be at least 2 characters.',
-  }),
-});
+import { TodoList } from '@components/todo-list';
 
 export default function Home() {
-  const { addTask, filter, setFilter } = useTaskContext();
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      taskName: '',
-    },
-  });
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    addTask(values.taskName);
-    form.reset();
-  }
-
   return (
     <div className="min-h-screen overflow-hidden font-sans">
-      {/* Header */}
       <header className="w-full px-4 py-3">
         <div className="mx-auto flex max-w-7xl items-center justify-end space-x-4">
           <Link
@@ -65,72 +29,10 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main content */}
       <main className="mb-5 flex items-center justify-center transition-colors duration-300 lg:mt-5">
-        <div className="mx-auto flex w-full max-w-md flex-col p-6">
-          <div className="mb-6 flex items-center justify-between">
-            <Greeting />
-          </div>
-
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="mb-6 flex space-x-2"
-            >
-              <FormField
-                control={form.control}
-                name="taskName"
-                render={({ field }) => (
-                  <FormItem className="flex-1">
-                    <FormControl>
-                      <Input
-                        type="text"
-                        placeholder="Add a new task..."
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button size="icon" aria-label="Add task" type="submit">
-                <Plus className="h-4 w-4" />
-              </Button>
-            </form>
-          </Form>
-
-          <div className="mb-4 flex space-x-2">
-            <Button
-              variant={filter === 'all' ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => setFilter('all')}
-              className="flex-1"
-            >
-              All
-            </Button>
-            <Button
-              variant={filter === 'active' ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => setFilter('active')}
-              className="flex-1"
-            >
-              Active
-            </Button>
-            <Button
-              variant={filter === 'done' ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => setFilter('done')}
-              className="flex-1"
-            >
-              Done
-            </Button>
-          </div>
-          {/* Task list */}
-          <Tasks />
-        </div>
+        <TodoList />
       </main>
 
-      {/* Footer */}
       <footer className="bg-background border-border fixed bottom-0 flex w-full justify-center border-t px-4 py-3">
         <p className="text-muted-foreground text-xs">
           &copy; {new Date().getFullYear() + ' nextjs-starter-pack. By '}
