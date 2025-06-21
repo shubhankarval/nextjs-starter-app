@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import he from 'he';
+import { useUser } from '@clerk/nextjs';
 
 type HelloResponse = {
   code: string;
@@ -14,8 +15,14 @@ type IPResponse = {
 
 export function Greeting() {
   const [greeting, setGreeting] = useState<string | null>(null);
+  const { user } = useUser();
 
   useEffect(() => {
+    let name = '';
+    if (user?.firstName) {
+      name = ' ' + user.firstName;
+    }
+
     const fetchGreeting = async () => {
       try {
         const params = new URLSearchParams();
@@ -36,18 +43,18 @@ export function Greeting() {
             `https://hellosalut.stefanbohacek.dev/?${params}`,
           );
           const data: HelloResponse = await res.json();
-          setGreeting(he.decode(data.hello) + '!');
+          setGreeting(he.decode(data.hello) + name + '!');
         } else {
-          setGreeting('Hello!');
+          setGreeting('Hello' + name + '!');
         }
       } catch (error) {
         console.error('Failed to fetch greeting:', error);
-        setGreeting('Hello!');
+        setGreeting('Hello' + name + '!');
       }
     };
 
     fetchGreeting();
-  }, []);
+  }, [user]);
 
   return (
     <h1 className="text-foreground text-2xl font-bold">
