@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-import { Task } from '@/types';
+import type { Task } from '@/db/schema';
 import {
   getAllTasks,
   deleteTaskFromDB,

@@ -1,29 +1,28 @@
 'use server';
 
-import { Task } from '@/types';
+import { eq } from 'drizzle-orm';
 
-// Mock in-memory database for tasks
-const taskMap: Map<string, Task> = new Map([
-  ['1', { id: '1', text: 'Buy groceries', completed: false }],
-  ['2', { id: '2', text: 'Walk the dog', completed: false }],
-  ['3', { id: '3', text: 'Read a book', completed: true }],
-]);
+import { db } from '@/db';
+import { tasks, type Task } from '@/db/schema';
 
 export const getAllTasks = async (): Promise<Task[]> => {
-  return Array.from(taskMap.values());
+  return await db.select().from(tasks);
 };
 
 export const addTaskToDB = async (task: Task): Promise<void> => {
-  taskMap.set(task.id, task);
+  await db.insert(tasks).values(task);
 };
 
 export const deleteTaskFromDB = async (id: string): Promise<void> => {
-  taskMap.delete(id);
+  await db.delete(tasks).where(eq(tasks.id, id));
 };
 
 export const toggleTaskCompletionInDB = async (id: string): Promise<void> => {
-  const task = taskMap.get(id);
+  const task = await db.select().from(tasks).where(eq(tasks.id, id)).get();
   if (task) {
-    taskMap.set(id, { ...task, completed: !task.completed });
+    await db
+      .update(tasks)
+      .set({ completed: !task.completed })
+      .where(eq(tasks.id, id));
   }
 };
