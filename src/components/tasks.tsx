@@ -1,4 +1,5 @@
 'use client';
+
 import { useAtomValue, useSetAtom } from 'jotai';
 import { Trash2, Loader2 } from 'lucide-react';
 
