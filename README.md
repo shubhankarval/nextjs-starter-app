@@ -14,6 +14,7 @@ Each branch includes optional code for a specific feature:
 | `authjs`         | Authentication using Auth.js        |
 | `clerk`          | Authentication using Clerk          |
 | `dark-mode`      | Dark mode with next-themes          |
+| `drizzle`        | Drizzle ORM Integration             |
 | `jotai`          | State management with Jotai         |
 | `prisma`         | Prisma ORM integration              |
 | `rhf-with-zod`   | React Hook Form with Zod validation |
@@ -40,4 +41,4 @@ bun install
 bun dev
 ```
 
-Now open your browser to [http://localhost:3000](http://localhost:3000) 
+Now open your browser to [http://localhost:3000](http://localhost:3000)
